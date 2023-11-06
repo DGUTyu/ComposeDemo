@@ -1,20 +1,24 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "30.0.3"
+    namespace 'com.wxdgut.composedemo'
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.wxdgut.composedemo"
-        minSdkVersion 21
-        targetSdkVersion 32
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // 启用对矢量图形的支持
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
@@ -27,21 +31,63 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    //将app支持的最低API 版本设置为21或更高，同时开启Jetpack Compose enable开关
+    buildFeatures {
+        compose true
+    }
+
+    //Compose 与 Kotlin 的兼容性对应关系:https://developer.android.com/jetpack/androidx/releases/compose-kotlin?hl=zh-cn
+    //Compose Compiler 1.4.0版本兼容的 Kotlin 版本是1.8.0
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
+    }
+
+    // kotlin版本
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    // packaging 块用于配置与构建输出包（APK）相关的选项。在这里，resources 块用于配置资源文件的处理方式。
+    // excludes += '/META-INF/{AL2.0,LGPL2.1}' 的含义是排除掉指定路径下的特定文件，即从构建的 APK 中移除指定的资源文件
+    // 在这里，/META-INF/{AL2.0,LGPL2.1} 表示排除掉 /META-INF/AL2.0 和 /META-INF/LGPL2.1 这两个文件（或者文件夹）
+    // 通常，这样的配置用于解决依赖库中可能存在的许可证文件（如 Apache License 2.0 和 GNU Lesser General Public License 2.1）冲突的问题。在打包时排除这些许可证文件可以避免可能的许可证冲突。
+    // 总的来说，这段配置用于在构建过程中排除指定路径下的特定资源文件，以满足许可证方面的要求。
+    packaging {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
     }
 }
 
 dependencies {
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.multidex:multidex:2.0.1'
-    //workerManager
-    implementation "androidx.work:work-runtime-ktx:2.7.1"
-    //协程
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1"
+    // activity 和 viewmodel的扩展
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.activity:activity-compose:1.7.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+
+    // 借助 Compose 物料清单 (BoM)，只需指定 BoM 的版本，即可管理所有 Compose 依赖库版本。
+    // BoM 不会自动将所有 Compose 库添加到应用中，需要指定具体库。
+    // BOM 与库版本对应表:https://developer.android.com/jetpack/compose/bom/bom-mapping?hl=zh-cn
+    // 2022.11.00的compose-bom版本是1.3.1
+    // Dependency 'androidx.compose.foundation:foundation:1.3.1' requires 'compileSdkVersion' to be set to 33 or higher
+    implementation platform('androidx.compose:compose-bom:2022.11.00')
+    // 具体库的版本号可不写，若指明了具体版本号，则以具体版本号为准
+    //implementation 'androidx.compose.material3:material3'
+    //implementation 'androidx.compose.material3:material3:1.1.0-alpha01'
+    // material组件库。使用现成可用的 Material Design 组件构建 Jetpack Compose UI。这是更高层级的 Compose 入口点，旨在提供与 www.material.io 上描述的组件一致的组件。
+    implementation 'androidx.compose.material:material'
+    // 基础能力库。使用现成可用的构建块编写 Jetpack Compose 应用，还可扩展 Foundation 以构建您自己的设计系统元素。
+    implementation("androidx.compose.foundation:foundation")
+    // 基础ui组件库。与设备互动所需的 Compose UI 的基本组件，包括布局、绘图和输入。
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    // ui预览
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    // ui测试工具
+    //debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    // icon及扩展
+    implementation 'androidx.compose.material:material-icons-core'
+    implementation 'androidx.compose.material:material-icons-extended'
 }
