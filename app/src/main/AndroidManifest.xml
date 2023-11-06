@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondActivity" />
+        <activity android:name=".diff.ImperativeUIActivity" />
+        <activity android:name=".diff.DeclarativeUIActivity" />
     </application>
 
 </manifest>
