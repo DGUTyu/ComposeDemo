@@ -2,10 +2,11 @@ package com.wxdgut.composedemo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+
+import com.wxdgut.composedemo.utils.ToastUtils;
 
 public class SecondActivity extends Activity {
 
