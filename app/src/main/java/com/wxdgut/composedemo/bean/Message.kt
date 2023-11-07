@@ -1,5 +1,8 @@
 package com.wxdgut.composedemo.bean
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -8,7 +11,7 @@ data class Message(val author: String, val body: String)
 
 @Composable
 fun MessageCard(msg: Message) {
-    Text(text = msg.author)
+    Text(msg.author)
     Text(msg.body)
 }
 
@@ -16,10 +19,32 @@ fun MessageCard(msg: Message) {
 //locale:String = "",fontScale:Float = 1f,showSystemUi:Boolean = false,showBackground:Boolean = false,
 //backgroundColor:Long = 0,uiMode:Int = 0,device:String = Devices.DEFAULT,wallpaper:Int = Wallpapers.NONE
 
-//这段代码在 屏幕上创建了两个 Text 元素。然而，由于我们并没有指定如何排列它们，这两个 Text 元素重叠在了一块。
 @Preview(showBackground = true)
 @Composable
 fun PreviewMessageCard() {
-    //MessageCard(msg = Message(author = "Hello Compose", "I am LuYao"))
-    MessageCard(Message("Hello Compose2", "I am LuYao"))
+    // 用 Column 来垂直排列项目，用 Row 来水平排列项目，用 Box 来堆叠元素。
+    val msg = Message("Hello", "Compose")
+    val msg2 = Message("Android", "Studio")
+    val msg3 = Message("666", "777")
+    Column {
+        MessageCard(msg)
+        Text("*************")
+        Text(msg.author)
+        Text(msg.body)
+        Row {
+            MessageCard(msg = msg2)
+            Text("-----")
+            Text(text = msg2.author)
+            Text(text = msg2.body)
+        }
+        Row {
+            Box {
+                MessageCard(msg = msg3)
+            }
+            Box {
+                Text(text = "222")
+                Text(text = "444")
+            }
+        }
+    }
 }
