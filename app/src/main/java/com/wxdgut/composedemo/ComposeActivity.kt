@@ -15,19 +15,20 @@ import com.wxdgut.composedemo.ui.theme.ComposeDemoTheme
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent(content = {
-            showTextPreview()
-        })
+        setContent {
+            ShowTextPreview()
+        }
     }
 
+    //Composable 函数一般用大写开头，为了和普通的函数作为区分
     @Preview(showBackground = true)
     @Composable
-    fun showTextPreview() {
-        showText(title = "标题1", subTitle = "标题2，会连在标题1后面")
+    fun ShowTextPreview() {
+        ShowText("标题1", "标题2，会连在标题1后面")
     }
 
     @Composable
-    fun showText(title: String, subTitle: String) {
-        Text(text = "${title}${subTitle}")
+    fun ShowText(title: String, subTitle: String) {
+        Text("${title}${subTitle}")
     }
 }
