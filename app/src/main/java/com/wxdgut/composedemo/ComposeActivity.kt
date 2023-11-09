@@ -8,14 +8,27 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,9 +41,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.wxdgut.composedemo.bean.Message
+import com.wxdgut.composedemo.ui.theme.Pink80
 import com.wxdgut.composedemo.ui.theme.Purple40
 import com.wxdgut.composedemo.ui.theme.Purple80
 import com.wxdgut.composedemo.ui.theme.Shapes
@@ -49,7 +64,8 @@ class ComposeActivity : ComponentActivity() {
     @Preview(showBackground = true)
     @Composable
     fun ShowPreview() {
-        ShowModifierText()
+        //ShowModifierText()
+        ScaffoldExample()
     }
 
     @Composable
@@ -104,6 +120,58 @@ class ComposeActivity : ComponentActivity() {
                     text = "hello compose",
                     color = Color.White,
                     modifier = Modifier.padding(8.dp).align(Alignment.Center)
+                )
+            }
+        }
+    }
+
+    //Scaffold、TopAppBar需要添加注解
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun ScaffoldExample() {
+        var presses by remember { mutableStateOf(0) }
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text("Top app bar") },
+                    colors = TopAppBarDefaults.smallTopAppBarColors(
+                        containerColor = Pink80,
+                        titleContentColor = Color.White
+                    )
+                )
+            },
+            bottomBar = {
+                BottomAppBar(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.primary,
+                ) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        text = "Bottom app bar",
+                    )
+                }
+            },
+            floatingActionButton = {
+                FloatingActionButton(onClick = { presses++ }) {
+                    Icon(Icons.Default.Add, contentDescription = "Add")
+                }
+            },
+            //默认显示在右下角
+            floatingActionButtonPosition = FabPosition.Center
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier.padding(innerPadding),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+            ) {
+                Text(
+                    modifier = Modifier.padding(8.dp),
+                    text =
+                    """
+                    这是一个脚手架的例子。它使用Scaffold compositable的参数来创建一个屏幕，其中包含一个简单的顶部应用程序栏、底部应用程序栏和浮动操作按钮。
+                    它还包含了一些基本的内部内容，例如本文。
+                    您已按下浮动动作按钮 $presses 次。
+                """.trimIndent(),
                 )
             }
         }
