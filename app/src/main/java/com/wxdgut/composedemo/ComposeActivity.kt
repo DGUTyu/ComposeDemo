@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -44,15 +45,22 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.wxdgut.composedemo.bean.Message
 import com.wxdgut.composedemo.ui.theme.Pink80
 import com.wxdgut.composedemo.ui.theme.Purple40
@@ -182,7 +190,7 @@ class ComposeActivity : ComponentActivity() {
                     您已按下浮动动作按钮 $presses 次。
                 """.trimIndent(),
                 )
-                ShowImage()
+                ShowImagePlus()
             }
         }
     }
@@ -235,6 +243,85 @@ class ComposeActivity : ComponentActivity() {
                     contentDescription = "None:截取图片中心放大。缩放为Fit时，clip无效",
                     modifier = imageModifier,
                     contentScale = ContentScale.None
+                )
+            }
+        }
+    }
+
+    @Composable
+    fun ShowImagePlus() {
+        //Compose 图片加载推荐使用 Coil。由于 Coil 使用 okhttp 请求，故需要在 manifest.xml 添加网络权限
+        val url = "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
+        val rainbowColorsBrush = remember {
+            Brush.sweepGradient(
+                listOf(
+                    Color(0xFF9575CD),
+                    Color(0xFFBA68C8),
+                    Color(0xFFE57373),
+                    Color(0xFFFFB74D),
+                    Color(0xFFFFF176),
+                    Color(0xFFAED581),
+                    Color(0xFF4DD0E1),
+                    Color(0xFF9575CD)
+                )
+            )
+        }
+        val imageModifier  = Modifier
+            .size(120.dp)
+            .border(
+                //为图片加上彩色边框
+                BorderStroke(4.dp, rainbowColorsBrush),
+                RoundedCornerShape(16.dp, 16.dp, 0.dp, 0.dp)
+            )
+            .background(Purple80)
+            .clip(RoundedCornerShape(30.dp, 30.dp, 30.dp, 30.dp))
+            //图片转换为自定义宽高比
+            .aspectRatio(30f / 10f)
+        Row(
+            Modifier.background(White),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Image(
+                    painter = painterResource(id = R.drawable.img_android_vertical),
+                    contentDescription = "竖屏图片,使用ContentScale.Crop",
+                    contentScale = ContentScale.Crop,
+                    modifier = imageModifier
+
+                )
+            }
+            Column(
+                Modifier.padding(start = 10.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.img_android_horizontal),
+                    contentDescription = "横屏图片,使用ContentScale.Fit,通过颜色矩阵添加黑白滤镜",
+                    modifier = imageModifier,
+                    colorFilter = ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0f) })
+                )
+            }
+            Column(
+                Modifier.padding(start = 10.dp)
+            ) {
+                //加载图片方式1：
+                //AsyncImage(
+                    //model = url,
+                    //contentDescription = null,
+                    //modifier = imageModifier
+                //)
+                //加载图片方式2：
+                val modelBuilder = ImageRequest.Builder(LocalContext.current)
+                    .data(url ?: "")
+                    //是否在图片加载时启用淡入淡出效果
+                    .crossfade(false)
+                    //是否允许使用硬件加速
+                    .allowHardware(true)
+                    .build()
+                Image(
+                    painter = rememberAsyncImagePainter(model = modelBuilder),
+                    contentDescription = "下载网络图片,只使用其中一个加载方式即可",
+                    modifier = imageModifier
                 )
             }
         }

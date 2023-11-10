@@ -90,4 +90,6 @@ dependencies {
     // icon及扩展
     implementation 'androidx.compose.material:material-icons-core'
     implementation 'androidx.compose.material:material-icons-extended'
+    //Compose 图片加载库 Coil。由于 Coil 使用 okhttp 请求，故需要在 manifest.xml 添加网络权限
+    implementation "io.coil-kt:coil-compose:2.1.0"
 }
