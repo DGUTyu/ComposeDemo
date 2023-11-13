@@ -62,6 +62,7 @@ import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.wxdgut.composedemo.bean.Message
+import com.wxdgut.composedemo.bean.MessageCard
 import com.wxdgut.composedemo.ui.theme.Pink80
 import com.wxdgut.composedemo.ui.theme.Purple40
 import com.wxdgut.composedemo.ui.theme.Purple80
@@ -190,7 +191,7 @@ class ComposeActivity : ComponentActivity() {
                     您已按下浮动动作按钮 $presses 次。
                 """.trimIndent(),
                 )
-                ShowImagePlus()
+                PreviewMessageCard()
             }
         }
     }
@@ -325,5 +326,12 @@ class ComposeActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun PreviewMessageCard() {
+        val msg = Message("Hello", "Compose\n这是第2行内容\n这是第3行内容")
+        MessageCard(msg)
     }
 }
