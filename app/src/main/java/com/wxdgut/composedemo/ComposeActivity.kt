@@ -61,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.wxdgut.composedemo.basic.ShowTextUse
 import com.wxdgut.composedemo.bean.Message
 import com.wxdgut.composedemo.bean.MessageCard
 import com.wxdgut.composedemo.ui.theme.Pink80
@@ -191,7 +192,8 @@ class ComposeActivity : ComponentActivity() {
                     您已按下浮动动作按钮 $presses 次。
                 """.trimIndent(),
                 )
-                PreviewMessageCard()
+                //PreviewMessageCard()
+                ShowTextUse()
             }
         }
     }
