@@ -61,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.wxdgut.composedemo.basic.ShowIconButtonUse
 import com.wxdgut.composedemo.basic.ShowIconUse
 import com.wxdgut.composedemo.basic.ShowImageUse
 import com.wxdgut.composedemo.basic.ShowTextUse
@@ -209,7 +210,8 @@ class ComposeActivity : ComponentActivity() {
                 //PreviewMessageCard()
                 //ShowTextUse()
                 //ShowImageUse()
-                ShowIconUse()
+                //ShowIconUse()
+                ShowIconButtonUse()
             }
         }
     }
