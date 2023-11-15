@@ -61,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.wxdgut.composedemo.basic.ShowImageUse
 import com.wxdgut.composedemo.basic.ShowTextUse
 import com.wxdgut.composedemo.bean.Message
 import com.wxdgut.composedemo.bean.MessageCard
@@ -193,7 +194,8 @@ class ComposeActivity : ComponentActivity() {
                 """.trimIndent(),
                 )
                 //PreviewMessageCard()
-                ShowTextUse()
+                //ShowTextUse()
+                ShowImageUse()
             }
         }
     }
