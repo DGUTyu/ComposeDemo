@@ -61,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.wxdgut.composedemo.basic.ShowIconUse
 import com.wxdgut.composedemo.basic.ShowImageUse
 import com.wxdgut.composedemo.basic.ShowTextUse
 import com.wxdgut.composedemo.bean.Message
@@ -102,7 +103,12 @@ class ComposeActivity : ComponentActivity() {
         Column {
             val msg = Message("Hello", "Compose")
             //使用系统颜色
-            Text(msg.author, modifier = Modifier.background(Color.LightGray).padding(bottom = 5.dp).size(100.dp,20.dp))
+            Text(
+                msg.author, modifier = Modifier
+                    .background(Color.LightGray)
+                    .padding(bottom = 5.dp)
+                    .size(100.dp, 20.dp)
+            )
             //使用自定义颜色
             Text(msg.body,
                 Modifier.run {
@@ -121,7 +127,12 @@ class ComposeActivity : ComponentActivity() {
                 }
             )
             Text(
-                "hello world", Modifier.background(Purple40).width(60.dp).height(30.dp).clip(Shapes.large)
+                "hello world",
+                Modifier
+                    .background(Purple40)
+                    .width(60.dp)
+                    .height(30.dp)
+                    .clip(Shapes.large)
             )
             Box(
                 modifier = Modifier
@@ -139,7 +150,9 @@ class ComposeActivity : ComponentActivity() {
                 Text(
                     text = "hello compose",
                     color = Color.White,
-                    modifier = Modifier.padding(8.dp).align(Alignment.Center)
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .align(Alignment.Center)
                 )
             }
         }
@@ -195,7 +208,8 @@ class ComposeActivity : ComponentActivity() {
                 )
                 //PreviewMessageCard()
                 //ShowTextUse()
-                ShowImageUse()
+                //ShowImageUse()
+                ShowIconUse()
             }
         }
     }
@@ -212,7 +226,7 @@ class ComposeActivity : ComponentActivity() {
                 .size(90.dp, 120.dp)
                 .border(BorderStroke(2.dp, Red))
                 .background(Purple80)
-                .clip( RoundedCornerShape(50.dp, 50.dp, 0.dp, 0.dp))
+                .clip(RoundedCornerShape(50.dp, 50.dp, 0.dp, 0.dp))
             Column {
                 Image(
                     painter = painterResource(id = R.drawable.img_android_horizontal),
@@ -271,7 +285,7 @@ class ComposeActivity : ComponentActivity() {
                 )
             )
         }
-        val imageModifier  = Modifier
+        val imageModifier = Modifier
             .size(120.dp)
             .border(
                 //为图片加上彩色边框
@@ -311,9 +325,9 @@ class ComposeActivity : ComponentActivity() {
             ) {
                 //加载图片方式1：
                 //AsyncImage(
-                    //model = url,
-                    //contentDescription = null,
-                    //modifier = imageModifier
+                //model = url,
+                //contentDescription = null,
+                //modifier = imageModifier
                 //)
                 //加载图片方式2：
                 val modelBuilder = ImageRequest.Builder(LocalContext.current)
