@@ -61,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.wxdgut.composedemo.basic.ShowButtonUse
 import com.wxdgut.composedemo.basic.ShowIconButtonUse
 import com.wxdgut.composedemo.basic.ShowIconUse
 import com.wxdgut.composedemo.basic.ShowImageUse
@@ -215,7 +216,8 @@ class ComposeActivity : ComponentActivity() {
                 //ShowIconUse()
                 //ShowIconButtonUse()
                 //SampleCenteredRowUsage()
-                SampleCenteredColumnUsage()
+                //SampleCenteredColumnUsage()
+                ShowButtonUse()
             }
         }
     }
