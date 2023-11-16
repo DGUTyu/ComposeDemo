@@ -71,6 +71,8 @@ import com.wxdgut.composedemo.ui.theme.Pink80
 import com.wxdgut.composedemo.ui.theme.Purple40
 import com.wxdgut.composedemo.ui.theme.Purple80
 import com.wxdgut.composedemo.ui.theme.Shapes
+import com.wxdgut.composedemo.utils.SampleCenteredColumnUsage
+import com.wxdgut.composedemo.utils.SampleCenteredRowUsage
 import com.wxdgut.composedemo.utils.ToastUtils
 
 class ComposeActivity : ComponentActivity() {
@@ -211,7 +213,9 @@ class ComposeActivity : ComponentActivity() {
                 //ShowTextUse()
                 //ShowImageUse()
                 //ShowIconUse()
-                ShowIconButtonUse()
+                //ShowIconButtonUse()
+                //SampleCenteredRowUsage()
+                SampleCenteredColumnUsage()
             }
         }
     }
