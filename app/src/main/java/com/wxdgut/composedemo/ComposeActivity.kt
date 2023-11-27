@@ -66,6 +66,7 @@ import com.wxdgut.composedemo.basic.ShowIconButtonUse
 import com.wxdgut.composedemo.basic.ShowIconUse
 import com.wxdgut.composedemo.basic.ShowImageUse
 import com.wxdgut.composedemo.basic.ShowListUse
+import com.wxdgut.composedemo.basic.ShowStateUse
 import com.wxdgut.composedemo.basic.ShowTextFieldUse
 import com.wxdgut.composedemo.basic.ShowTextUse
 import com.wxdgut.composedemo.bean.Message
@@ -221,7 +222,8 @@ class ComposeActivity : ComponentActivity() {
                 //SampleCenteredColumnUsage()
                 //ShowButtonUse()
                 //ShowTextFieldUse()
-                ShowListUse()
+                //ShowListUse()
+                ShowStateUse()
             }
         }
     }
