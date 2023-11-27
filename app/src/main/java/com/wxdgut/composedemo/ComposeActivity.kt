@@ -61,7 +61,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.wxdgut.composedemo.basic.DisposableEffectUse2
 import com.wxdgut.composedemo.basic.ShowButtonUse
+import com.wxdgut.composedemo.basic.ShowEffectUse
 import com.wxdgut.composedemo.basic.ShowIconButtonUse
 import com.wxdgut.composedemo.basic.ShowIconUse
 import com.wxdgut.composedemo.basic.ShowImageUse
@@ -82,7 +84,9 @@ import com.wxdgut.composedemo.utils.ToastUtils
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val backDispatcher = this.onBackPressedDispatcher
         setContent {
+            DisposableEffectUse2(dispatcher = backDispatcher)
             ShowPreview()
         }
     }
@@ -223,7 +227,8 @@ class ComposeActivity : ComponentActivity() {
                 //ShowButtonUse()
                 //ShowTextFieldUse()
                 //ShowListUse()
-                ShowStateUse()
+                //ShowStateUse()
+                ShowEffectUse()
             }
         }
     }

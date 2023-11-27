@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 fun ShowStateUse() {
     Column(modifier = Modifier.padding(16.dp)) {
         // 方式1 mutableState:MutableState<String>
+        // 推荐使用 val 来声明状态，因为它强调了不可变性，但仍然允许通过 value 属性来改变状态的值
         val mutableState = remember { mutableStateOf("") }
         if (mutableState.value.isNotEmpty()) {
             Text(text = "One, ${mutableState.value}!")
@@ -34,6 +35,7 @@ fun ShowStateUse() {
         // 方式2 name:String
         // 使用了 Kotlin 的属性委托语法，
         // 通过 by 关键字将 name 关联到了 remember { mutableStateOf("") } 所返回的 MutableState 对象
+        // 可变的属性委托，它直接代表了 MutableState 的值
         var name by remember { mutableStateOf("") }
         if (name.isNotEmpty()) {
             Text(text = "Two, $name!")
