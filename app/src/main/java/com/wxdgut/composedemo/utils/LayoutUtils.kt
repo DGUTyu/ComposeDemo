@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -16,7 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 /**
@@ -184,6 +184,61 @@ fun SampleCenteredColumnUsage() {
         ) {
             Button(onClick = { /*TODO*/ }) {
                 Text("确认")
+            }
+        }
+    }
+}
+
+
+/**
+ * 将内容垂直方向按比例分割屏幕
+ *
+ * 利用 Kotlin 的默认参数实现，如果调用时没有传递weights或fillMaxWidth参数，它们将自动使用默认值
+ *
+ * run是 Kotlin 标准库中的一个函数，它允许你在对象上执行代码块，并返回最后一个表达式的结果
+ * 当你调用 run 时，它会将当前对象作为闭包的接收者（即this），然后你可以在这个闭包内部执行操作，比如调用对象的方法、访问属性等。
+ * run函数最终会返回闭包中最后一个表达式的结果。
+ */
+@Composable
+fun SplitScreenContentVertical(
+    contents: List<@Composable () -> Unit>,
+    weights: List<Float> = listOf(1f, 1f, 1f),
+    fillMaxWidth: Boolean = true
+) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        contents.forEachIndexed { index, content ->
+            Row(
+                modifier = Modifier
+                    .weight(weights.getOrNull(index) ?: 1f)
+                    .run { if (fillMaxWidth) fillMaxWidth() else this },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                content()
+            }
+        }
+    }
+}
+
+/**
+ * 将内容水平方向按比例分割屏幕
+ */
+@Composable
+fun SplitScreenContentHorizontal(
+    contents: List<@Composable () -> Unit>,
+    weights: List<Float> = listOf(1f, 1f, 1f),
+    fillMaxHeight: Boolean = true
+) {
+    Row(modifier = Modifier.fillMaxSize()) {
+        contents.forEachIndexed { index, content ->
+            Column(
+                modifier = Modifier
+                    .weight(weights.getOrNull(index) ?: 1f)
+                    .run { if (fillMaxHeight) fillMaxHeight() else this },
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                content()
             }
         }
     }
