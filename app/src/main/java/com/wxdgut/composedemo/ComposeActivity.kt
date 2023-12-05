@@ -62,6 +62,7 @@ import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.wxdgut.composedemo.basic.DisposableEffectUse2
+import com.wxdgut.composedemo.basic.ModifierUse
 import com.wxdgut.composedemo.basic.ShowButtonUse
 import com.wxdgut.composedemo.basic.ShowEffectUse
 import com.wxdgut.composedemo.basic.ShowIconButtonUse
@@ -228,7 +229,8 @@ class ComposeActivity : ComponentActivity() {
                 //ShowTextFieldUse()
                 //ShowListUse()
                 //ShowStateUse()
-                ShowEffectUse()
+                //ShowEffectUse()
+                ModifierUse()
             }
         }
     }
