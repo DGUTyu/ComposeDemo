@@ -2,6 +2,7 @@ package com.wxdgut.composedemo.utils
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -11,12 +12,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 /**
@@ -241,5 +245,41 @@ fun SplitScreenContentHorizontal(
                 content()
             }
         }
+    }
+}
+
+/**
+ * 将文本放置在一个具有文本属性的框中，并根据参数设置进行居中显示或自适应包裹内容。
+ *
+ * @param text 要显示的字符串。
+ * @param modifier 应用于框的修饰符。
+ * @param textAlign 文本的水平对齐方式。
+ * @param style 文本的样式。
+ * @param wrapContent 是否根据内容自适应包裹。
+ */
+@Composable
+fun TextCenteredInBox(
+    text: String,
+    modifier: Modifier = Modifier,
+    textAlign: TextAlign = TextAlign.Center,
+    style: TextStyle = TextStyle.Default,
+    wrapContent: Boolean = false
+) {
+    val finalModifier = if (wrapContent) {
+        modifier.wrapContentSize(Alignment.Center)
+    } else {
+        modifier.fillMaxSize()
+    }
+
+    Box(
+        modifier = finalModifier,
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = text,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = textAlign,
+            style = style
+        )
     }
 }

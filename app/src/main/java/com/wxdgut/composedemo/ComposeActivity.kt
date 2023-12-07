@@ -63,6 +63,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.wxdgut.composedemo.basic.DisposableEffectUse2
 import com.wxdgut.composedemo.basic.ModifierUse
+import com.wxdgut.composedemo.basic.PagerUse
 import com.wxdgut.composedemo.basic.RowAndColumnUse
 import com.wxdgut.composedemo.basic.ShowButtonUse
 import com.wxdgut.composedemo.basic.ShowEffectUse
@@ -86,9 +87,9 @@ import com.wxdgut.composedemo.utils.ToastUtils
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val backDispatcher = this.onBackPressedDispatcher
+        //val backDispatcher = this.onBackPressedDispatcher
         setContent {
-            DisposableEffectUse2(dispatcher = backDispatcher)
+            //DisposableEffectUse2(dispatcher = backDispatcher)
             ShowPreview()
         }
     }
@@ -232,7 +233,8 @@ class ComposeActivity : ComponentActivity() {
                 //ShowStateUse()
                 //ShowEffectUse()
                 //ModifierUse()
-                RowAndColumnUse()
+                //RowAndColumnUse()
+                PagerUse()
             }
         }
     }
