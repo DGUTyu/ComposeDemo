@@ -62,6 +62,7 @@ import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.wxdgut.composedemo.basic.DisposableEffectUse2
+import com.wxdgut.composedemo.basic.FlowLayoutUse
 import com.wxdgut.composedemo.basic.ModifierUse
 import com.wxdgut.composedemo.basic.PagerUse
 import com.wxdgut.composedemo.basic.RowAndColumnUse
@@ -234,7 +235,8 @@ class ComposeActivity : ComponentActivity() {
                 //ShowEffectUse()
                 //ModifierUse()
                 //RowAndColumnUse()
-                PagerUse()
+                //PagerUse()
+                FlowLayoutUse()
             }
         }
     }
