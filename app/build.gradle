@@ -96,4 +96,8 @@ dependencies {
     implementation "io.coil-kt:coil-gif:2.4.0"
     // 加载 Svg 图像
     implementation "io.coil-kt:coil-svg:2.4.0"
+    // 使用 Compose 中的 ConstraintLayout 可代替使用多个已嵌套的 Row、Column、Box 和其他自定义布局元素这种做法
+    // 注意：constraintLayout-compose 工件的版本控制不同于 Jetpack Compose。
+    // https://developer.android.google.cn/jetpack/compose/layouts/constraintlayout?hl=zh-cn
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 }
