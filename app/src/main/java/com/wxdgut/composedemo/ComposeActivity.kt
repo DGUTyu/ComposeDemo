@@ -64,6 +64,7 @@ import coil.request.ImageRequest
 import com.wxdgut.composedemo.basic.BarrierUse
 import com.wxdgut.composedemo.basic.ChainUse
 import com.wxdgut.composedemo.basic.ConstraintLayoutUse
+import com.wxdgut.composedemo.basic.CustomizeLayoutUse
 import com.wxdgut.composedemo.basic.DisposableEffectUse2
 import com.wxdgut.composedemo.basic.FlowLayoutUse
 import com.wxdgut.composedemo.basic.ModifierUse
@@ -242,7 +243,8 @@ class ComposeActivity : ComponentActivity() {
                 //FlowLayoutUse()
                 //ConstraintLayoutUse()
                 //BarrierUse()
-                ChainUse()
+                //ChainUse()
+                CustomizeLayoutUse()
             }
         }
     }
