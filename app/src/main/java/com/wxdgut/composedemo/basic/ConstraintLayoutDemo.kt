@@ -1,13 +1,16 @@
 package com.wxdgut.composedemo.basic
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -335,12 +338,16 @@ private fun getDecoupledConstraints4(vararg refs: Triple<String, Dp, Dp>): Const
                 constrain(currentRef) {
                     top.linkTo(parent.top, margin = marginTop)
                     start.linkTo(parent.start, margin = marginLeft)
+                    end.linkTo(parent.end, margin = marginLeft)
+                    width = Dimension.preferredWrapContent
                 }
             } else {
                 val previousRef = createRefFor(refs[index - 1].first)
                 constrain(currentRef) {
                     top.linkTo(previousRef.bottom, margin = marginTop)
                     start.linkTo(parent.start, margin = marginLeft)
+                    end.linkTo(parent.end, margin = marginLeft)
+                    width = Dimension.preferredWrapContent
                 }
             }
         }
@@ -368,7 +375,6 @@ fun DecoupledConstraintLayout5() {
         Box(
             modifier = Modifier
                 .layoutId("two")
-                .fillMaxWidth()
                 .background(Color.Blue)
                 .height(100.dp)
         ) {
@@ -391,10 +397,25 @@ fun DecoupledConstraintLayout5() {
         Box(
             modifier = Modifier
                 .layoutId("three")
-                .fillMaxWidth()
                 .background(Color.Yellow)
+                .width(150.dp)
                 .height(150.dp)
         )
+
+//        Row(
+//            modifier = Modifier
+//                .layoutId("three")
+//                .fillMaxWidth(),
+//            horizontalArrangement = Arrangement.Start,
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            Box(
+//                modifier = Modifier
+//                    .background(Color.Yellow)
+//                    .width(150.dp)
+//                    .height(150.dp)
+//            )
+//        }
     }
 }
 
