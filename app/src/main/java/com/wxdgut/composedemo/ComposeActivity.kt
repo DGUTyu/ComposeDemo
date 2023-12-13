@@ -239,8 +239,8 @@ class ComposeActivity : ComponentActivity() {
                 //RowAndColumnUse()
                 //PagerUse()
                 //FlowLayoutUse()
-                //ConstraintLayoutUse()
-                BarrierUse()
+                ConstraintLayoutUse()
+                //BarrierUse()
             }
         }
     }
