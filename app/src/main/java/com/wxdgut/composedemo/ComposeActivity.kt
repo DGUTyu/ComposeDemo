@@ -61,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.wxdgut.composedemo.basic.BarrierUse
 import com.wxdgut.composedemo.basic.ConstraintLayoutUse
 import com.wxdgut.composedemo.basic.DisposableEffectUse2
 import com.wxdgut.composedemo.basic.FlowLayoutUse
@@ -238,7 +239,8 @@ class ComposeActivity : ComponentActivity() {
                 //RowAndColumnUse()
                 //PagerUse()
                 //FlowLayoutUse()
-                ConstraintLayoutUse()
+                //ConstraintLayoutUse()
+                BarrierUse()
             }
         }
     }
