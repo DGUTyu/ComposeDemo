@@ -11,16 +11,24 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 /**
@@ -281,5 +289,44 @@ fun TextCenteredInBox(
             textAlign = textAlign,
             style = style
         )
+    }
+}
+
+/**
+ * RoundedCornerShape：圆角矩形形状
+ * CutCornerShape：切角矩形形状
+ * CircleShape：圆形形状
+ * GenericShape：通用形状，可以使用自定义的路径创建
+ */
+@Composable
+fun ImagesWithRedDots(
+    cardShape: Shape = RoundedCornerShape(6.dp),
+    imgSize: Dp = 60.dp,
+    dotRadius: Dp = 9.dp,
+    dotColor: Color = Color(0xFFF53F3F),
+    content: @Composable () -> Unit
+) {
+    val drawBeforeModifier = Modifier
+        .size(imgSize + dotRadius)
+        .padding(dotRadius)
+        .drawWithContent {
+            drawContent()
+            drawCircle(
+                dotColor,
+                dotRadius.toPx(),
+                center = Offset(drawContext.size.width, 0f)
+            )
+        }
+
+    Card(
+        shape = cardShape,
+        modifier = drawBeforeModifier
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            content()
+        }
     }
 }

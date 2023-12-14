@@ -71,6 +71,7 @@ import com.wxdgut.composedemo.basic.ModifierUse
 import com.wxdgut.composedemo.basic.PagerUse
 import com.wxdgut.composedemo.basic.RowAndColumnUse
 import com.wxdgut.composedemo.basic.ShowButtonUse
+import com.wxdgut.composedemo.basic.ShowCanvasUse
 import com.wxdgut.composedemo.basic.ShowEffectUse
 import com.wxdgut.composedemo.basic.ShowIconButtonUse
 import com.wxdgut.composedemo.basic.ShowIconUse
@@ -244,7 +245,8 @@ class ComposeActivity : ComponentActivity() {
                 //ConstraintLayoutUse()
                 //BarrierUse()
                 //ChainUse()
-                CustomizeLayoutUse()
+                //CustomizeLayoutUse()
+                ShowCanvasUse()
             }
         }
     }
